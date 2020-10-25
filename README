@@ -27,13 +27,11 @@ These aliases pretty much work like the bash aliases. If you don't want the expa
 - After entering the command and before typing the next command press <C-V> (e.g., <C-V><Space>)
 - Start the command-line with a space and then enter the command.
 
-The CmdAlias() function takes a 3rd optional argument called "flags" for which you can pass options such as "<buffer>" to make the alias local to the current buffer.
-
 Here is the description from file header for more details:
 Usage:
-    :call CmdAlias('<lhs>', '<rhs>', [flags])
+    :call CmdAlias('<lhs>', '<rhs>')
     or
-    :Alias <lhs> <rhs> [flags]
+    :Alias <lhs> <rhs>
                                                                              
     :UnAlias <lhs> ...
     :Aliases [<lhs> ...]
@@ -62,9 +60,7 @@ Description:
   - The plugin provides a function to define command-line abbreviations such
     a way that they are expanded only if they are typed as the first word of
     a command (at ":" prompt). The same rules that apply to creating a
-    :cabbr apply to the second argument of CmdAlias() function too. You can
-    pass in optional flags (such as <buffer>) to the :cabbr command through
-    the third argument.
+    :cabbr apply to the second argument of CmdAlias() function too.
   - The :cabbr's created this way, work like the bash aliases, except that
     in this case, the alias is substituted in-place followed by the rules
     mentioned in the |abbreviations|, and no arguments can be defined.
