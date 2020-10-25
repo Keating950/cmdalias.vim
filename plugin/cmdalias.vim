@@ -84,27 +84,17 @@ endif
 " Define a new command alias.
 function! CmdAlias(lhs, ...)
   let lhs = a:lhs
-  if lhs !~ '^\w\+$'
-    echohl ErrorMsg | echo 'Only word characters are supported on <lhs>' | echohl NONE
-    return
-  endif
-  if a:0 > 0
-    let rhs = a:1
-  else
+  if a:0 == 0
     echohl ErrorMsg | echo 'No <rhs> specified for alias' | echohl NONE
     return
   endif
+  let rhs = join(a:000, ' ')
   if has_key(s:aliases, rhs)
     echohl ErrorMsg | echo "Another alias can't be used as <rhs>" | echohl NONE
     return
   endif
-  if a:0 > 1
-    let flags = join(a:000[1:], ' ').' '
-  else
-    let flags = ''
-  endif
-  exec 'cnoreabbr <expr> '.flags.a:lhs.
-	\ " <SID>ExpandAlias('".lhs."', '".rhs."')"
+  exec 'cnoreabbr <expr> 'a:lhs.
+	\ " <SID>ExpandAlias('".lhs."', ".rhs.")"
   let s:aliases[lhs] = rhs
 endfunction
 
